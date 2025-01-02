@@ -1,0 +1,101 @@
+body {
+    background-color: #013220; /* Dark green background */
+    color: #ffffff; /* White text color for contrast */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center all text */
+}
+
+header {
+    background-color: #014421; /* Slightly lighter dark green */
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    color: #ffffff;
+}
+
+nav {
+    background-color: #015533; /* Another shade of dark green */
+    padding: 10px;
+    text-align: center; /* Center nav items */
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block; /* Ensure links are inline */
+}
+
+nav a:hover {
+    background-color: #016644; /* Darker shade on hover */
+}
+
+main {
+    padding: 20px;
+    text-align: center; /* Center main content */
+}
+
+.table-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto; /* Center the container */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    background-color: #014421; /* Slightly lighter dark green */
+    padding: 10px;
+    border-radius: 8px; /* Rounded corners */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+    color: #ffffff;
+}
+
+table th, table td {
+    border: 1px solid #ffffff;
+    padding: 12px 15px;
+    text-align: center; /* Center table text */
+}
+
+table th {
+    background-color: #015533; /* Another shade of dark green */
+}
+
+table tr:nth-child(even) {
+    background-color: #016644; /* Darker shade for even rows */
+}
+
+table tr:hover {
+    background-color: #017755; /* Highlight row on hover */
+}
+
+footer {
+    background-color: #014421;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    header, nav, main, footer {
+        padding: 10px;
+        font-size: 1.5em;
+    }
+
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+
+    table, table th, table td {
+        font-size: 0.8em;
+        padding: 8px;
+    }
+}
