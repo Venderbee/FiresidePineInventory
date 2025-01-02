@@ -26,9 +26,18 @@ function populateTable(data) {
         if (index === 0) return; // Skip header row
 
         const newRow = tableBody.insertRow();
-        row.forEach(cell => {
+        row.forEach((cell, cellIndex) => {
             const newCell = newRow.insertCell();
-            newCell.textContent = cell;
+            if (cellIndex === 1) { // Assuming the second column contains image URLs
+                const img = document.createElement('img');
+                img.src = cell;
+                img.alt = 'Item Image';
+                img.style.width = '50px'; // Adjust the size as needed
+                img.style.height = '50px'; // Adjust the size as needed
+                newCell.appendChild(img);
+            } else {
+                newCell.textContent = cell;
+            }
         });
     });
 }
