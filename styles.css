@@ -51,7 +51,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1em;
-    color: #ffffff;
+    color: #000000;
 }
 
 table th, table td {
@@ -61,11 +61,15 @@ table th, table td {
 }
 
 table th {
-    background-color: #015533; /* Another shade of dark green */
+    background-color: #55be94; /* Another shade of dark green */
 }
 
 table tr:nth-child(even) {
-    background-color: #016644; /* Darker shade for even rows */
+    background-color: #4da084; /* Darker shade for even rows */
+}
+
+table tr:nth-child(odd) {
+    background-color: #2f7660; /* Lighter shade for odd rows */
 }
 
 table tr:hover {
@@ -76,7 +80,7 @@ footer {
     background-color: #014421;
     color: #ffffff;
     text-align: center;
-    padding: 10px;
+    padding: 1px; /* Reduced padding */
     position: fixed;
     width: 100%;
     bottom: 0;
