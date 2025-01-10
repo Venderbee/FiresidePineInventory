@@ -39,7 +39,29 @@ function populateTable(data) {
             } else {
                 newCell.textContent = cell;
             }
+
+            // Add event listener to update the sheet on cell edit
+            newCell.addEventListener('blur', () => {
+                updateSheetData(index + 1, cellIndex, newCell.textContent);
+            });
         });
+    });
+}
+
+function updateSheetData(row, col, value) {
+    const range = `Stock!${String.fromCharCode(65 + col)}${row}`;
+    const values = [[value]];
+    const body = { values };
+
+    gapi.client.sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: range,
+        valueInputOption: 'RAW',
+        resource: body,
+    }).then(response => {
+        console.log('Cell updated:', response);
+    }).catch(err => {
+        console.error('Error updating cell:', err);
     });
 }
 
