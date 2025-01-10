@@ -28,9 +28,10 @@ function populateTable(data) {
         const newRow = tableBody.insertRow();
         row.forEach((cell, cellIndex) => {
             const newCell = newRow.insertCell();
+            newCell.contentEditable = true; // Make the cell editable
             if (cellIndex === 1) { // Assuming the second column contains image URLs
                 const img = document.createElement('img');
-                img.src = cell; // Ensure this URL is correct
+                img.src = cell;
                 img.alt = 'Item Image';
                 img.style.width = '50px'; // Adjust the size as needed
                 img.style.height = '50px'; // Adjust the size as needed
