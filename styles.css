@@ -47,11 +47,16 @@ main {
     border-radius: 8px; /* Rounded corners */
 }
 
+.table-scroll {
+    max-height: 400px; /* Set the desired height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1em;
-    color: #000000;
+    color: #ffffff;
 }
 
 table th, table td {
@@ -80,7 +85,7 @@ footer {
     background-color: #014421;
     color: #ffffff;
     text-align: center;
-    padding: 1px; /* Reduced padding */
+    padding: 10px; /* Reduced padding */
     position: fixed;
     width: 100%;
     bottom: 0;
