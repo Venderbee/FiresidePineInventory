@@ -1,4 +1,4 @@
-const CLIENT_ID = 'YOUR_CLIENT_ID';
+const CLIENT_ID = '797118120296-juei5b214o19veqa4o3gn65jrpf8op5h.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyCws4q38ZqWT2m74wKEhGXIQ1EXyKkEo7w';
 const SPREADSHEET_ID = '1nEdJlw-6wumA1jIEtVeLoO4zW5s5gkhezu8vlWp4v5c';
 const RANGE = 'Stock'; // Adjust the range as needed
