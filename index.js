@@ -15,15 +15,9 @@ function initClient() {
         discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
         scope: SCOPES,
     }).then(() => {
-        const authorizeButton = document.getElementById('authorize_button');
-        authorizeButton.onclick = handleAuthClick;
-        loadSheetData();
-    });
-}
-
-function handleAuthClick() {
-    gapi.auth2.getAuthInstance().signIn().then(() => {
-        loadSheetData();
+        gapi.auth2.getAuthInstance().signIn().then(() => {
+            loadSheetData();
+        });
     });
 }
 
