@@ -22,7 +22,9 @@ function initClient() {
 }
 
 function handleAuthClick() {
-    gapi.auth2.getAuthInstance().signIn();
+    gapi.auth2.getAuthInstance().signIn().then(() => {
+        loadSheetData();
+    });
 }
 
 function loadSheetData() {
