@@ -89,5 +89,3 @@ function updateSheetData(row, col, value) {
         console.error('Error updating cell:', err);
     });
 }
-
-gapi.load('client:auth2', handleClientLoad);
