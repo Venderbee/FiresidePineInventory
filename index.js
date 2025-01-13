@@ -1,6 +1,29 @@
+const CLIENT_ID = 'YOUR_CLIENT_ID';
 const API_KEY = 'AIzaSyCws4q38ZqWT2m74wKEhGXIQ1EXyKkEo7w';
 const SPREADSHEET_ID = '1nEdJlw-6wumA1jIEtVeLoO4zW5s5gkhezu8vlWp4v5c';
 const RANGE = 'Stock'; // Adjust the range as needed
+const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
+
+function handleClientLoad() {
+    gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+    gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+        scope: SCOPES,
+    }).then(() => {
+        const authorizeButton = document.getElementById('authorize_button');
+        authorizeButton.onclick = handleAuthClick;
+        loadSheetData();
+    });
+}
+
+function handleAuthClick() {
+    gapi.auth2.getAuthInstance().signIn();
+}
 
 function loadSheetData() {
     gapi.client.sheets.spreadsheets.values.get({
@@ -65,13 +88,4 @@ function updateSheetData(row, col, value) {
     });
 }
 
-function initClient() {
-    gapi.client.init({
-        apiKey: API_KEY,
-        discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-    }).then(() => {
-        loadSheetData();
-    });
-}
-
-gapi.load('client', initClient);
+gapi.load('client:auth2', handleClientLoad);
