@@ -1,0 +1,5 @@
+[
+    ["Item", "Image", "Item Total", "Small", "Medium", "Large", "XL", "XXL", "Location", "Coming In", "Going Out", "In Stock"],
+    ["Item 1", "image1.jpg", "10", "2", "3", "1", "2", "2", "Location 1", "5", "3", "7"],
+    ["Item 2", "image2.jpg", "20", "5", "5", "3", "4", "3", "Location 2", "10", "5", "15"]
+]
