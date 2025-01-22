@@ -70,11 +70,6 @@ function populateTable(data) {
                 newCell.textContent = cell;
             }
 
-            // Add event listener to update the sheet on cell edit
-            newCell.addEventListener('blur', () => {
-                updateSheetData(index + 1, cellIndex, newCell.textContent);
-            });
-
             // Add event listener to update the local data on cell edit
             newCell.addEventListener('blur', () => {
                 updateLocalData(index, cellIndex, newCell.textContent);
