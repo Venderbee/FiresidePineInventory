@@ -12,6 +12,7 @@ function loadLocalData() {
         })
         .then(data => {
             populateTable(data);
+            initializeDataTable();
         })
         .catch(err => {
             console.error('Error loading local data:', err);
@@ -84,6 +85,12 @@ function saveLocalData(data) {
     })
     .catch(err => {
         console.error('Error saving data:', err);
+    });
+}
+
+function initializeDataTable() {
+    $(document).ready(function() {
+        $('#inventoryTable').DataTable();
     });
 }
 
