@@ -61,7 +61,7 @@ function updateLocalData(row, col, value) {
 }
 
 function saveLocalData(data) {
-    fetch('https://firesidepine.netlify.app/.netlify', {
+    fetch('https://67a0570964c88cf3fb420f09--firesidepine.netlify.app', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
