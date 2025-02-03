@@ -1,9 +1,8 @@
-const REPO_OWNER = 'Venderbee';
-const REPO_NAME = 'FiresidePineInventory';
-const FILE_PATH = 'main/data.json';
+const DATA_URL = '/.netlify/functions/readData';
+const SAVE_URL = '/.netlify/functions/writeData';
 
 function loadLocalData() {
-    fetch(`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${FILE_PATH}`)
+    fetch(DATA_URL)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -50,7 +49,7 @@ function populateTable(data) {
 }
 
 function updateLocalData(row, col, value) {
-    fetch(`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${FILE_PATH}`)
+    fetch(DATA_URL)
         .then(response => response.json())
         .then(data => {
             data[row][col] = value;
@@ -62,17 +61,12 @@ function updateLocalData(row, col, value) {
 }
 
 function saveLocalData(data) {
-    fetch('https://firesidepine.netlify.app/.netlify/functions/updateData', {
+    fetch(SAVE_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            REPO_OWNER,
-            REPO_NAME,
-            FILE_PATH,
-            data
-        })
+        body: JSON.stringify(data)
     })
     .then(response => {
         if (!response.ok) {
