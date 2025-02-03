@@ -1,5 +1,10 @@
+const GITHUB_TOKEN = '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';
+const REPO_OWNER = 'Venderbee';
+const REPO_NAME = 'FiresidePineInventory';
+const FILE_PATH = 'main/data.json';
+
 function loadLocalData() {
-    fetch('https://raw.githubusercontent.com/Venderbee/FiresidePineInventory/main/data.json')
+    fetch(`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${FILE_PATH}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -45,7 +50,7 @@ function populateTable(data) {
 }
 
 function updateLocalData(row, col, value) {
-    fetch('https://raw.githubusercontent.com/Venderbee/FiresidePineInventory/main/data.json')
+    fetch(`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${FILE_PATH}`)
         .then(response => response.json())
         .then(data => {
             data[row][col] = value;
@@ -57,9 +62,48 @@ function updateLocalData(row, col, value) {
 }
 
 function saveLocalData(data) {
-    // This function would need to send the updated data to the server to save it.
-    // For example, you could use a server-side script to handle the saving.
-    console.log('Updated data:', data);
+    const message = 'Update data.json';
+    const content = btoa(JSON.stringify(data, null, 2)); // Base64 encode the JSON data
+
+    // Get the SHA of the existing file
+    fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+        headers: {
+            'Authorization': `token ${GITHUB_TOKEN}`
+        }
+    })
+    .then(response => response.json())
+    .then(fileData => {
+        const sha = fileData.sha;
+
+        // Update the file on GitHub
+        fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message,
+                content: content,
+                sha: sha
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(result => {
+            console.log('Data saved successfully:', result);
+        })
+        .catch(err => {
+            console.error('Error saving data:', err);
+        });
+    })
+    .catch(err => {
+        console.error('Error fetching file SHA:', err);
+    });
 }
 
 // Load local data on page load
