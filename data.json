@@ -1,5 +1,16 @@
 [
     ["Item", "Image", "Item Total", "Small", "Medium", "Large", "XL", "XXL", "Location", "Coming In", "Going Out", "In Stock"],
-    ["Item 1", "image1.jpg", "10", "2", "3", "1", "2", "2", "Location 1", "5", "3", "7"],
-    ["Item 2", "image2.jpg", "20", "5", "5", "3", "4", "3", "Location 2", "10", "5", "15"]
+    ["Long sleeves", "https://github.com/Venderbee/FiresidePineInventory/blob/main/images/GreenHoodies.jpg?raw=true", "54", "0", "18", "18", "18", "0", "Stacy's", "", "", ""],
+    ["Hoodies", "https://github.com/Venderbee/FiresidePineInventory/blob/main/images/CampingMoononBlack.jpg", "9", "0", "0", "0", "9", "0", "Stacy's", "", "", ""],
+    ["Green T's", "https://github.com/Venderbee/FiresidePineInventory/blob/main/images/RedTreeBlackSweatshirt.jpg", "101", "18", "24", "24", "17", "18", "Stacy's", "", "", ""],
+    ["Sweat T's", "https://github.com/Venderbee/FiresidePineInventory/blob/main/images/SnowyTreeWomenTree.jpg", "31", "0", "14", "12", "5", "0", "Stacy's", "", "", ""],
+    ["Black Jackets", "", "51", "0", "6", "21", "15", "9", "Stacy's", "", "", ""],
+    ["Green T's", "", "68", "14", "12", "12", "30", "0", "Stacy's", "", "", ""],
+    ["Black T's", "", "12", "0", "0", "0", "6", "6", "Stacy's", "", "", ""],
+    ["American Trees", "", "77", "8", "15", "27", "18", "9", "Stacy's", "", "", ""],
+    ["Women's T's", "", "45", "12", "12", "9", "6", "6", "Stacy's", "", "", ""],
+    ["Jackets", "", "22", "6", "0", "16", "0", "0", "Stacy's", "", "", ""],
+    ["Green Trees", "", "42", "0", "6", "6", "6", "24", "Stacy's", "", "", ""],
+    ["Women's Green", "", "63", "6", "17", "24", "12", "4", "Stacy's", "", "", ""],
+    ["Women's Green Snow", "", "5", "0", "3", "0", "0", "2", "Stacy's", "", "", ""]
 ]
