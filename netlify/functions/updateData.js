@@ -13,16 +13,11 @@ exports.handler = async (event) => {
         const message = 'Update data.json';
         const content = Buffer.from(JSON.stringify(data, null, 2)).toString('base64'); // Base64 encode the JSON data
 
-        console.log('Fetching file SHA with:', {
-            url: `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
-            headers: {
-                'Authorization': `Bearer ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3+json'
-            }
-        });
+        const fileUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+        console.log("Fetching file from:", fileUrl);
 
         // Get the SHA of the existing file
-        const fileResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+        const fileResponse = await fetch(fileUrl, {
             headers: {
                 'Authorization': `Bearer ${GITHUB_TOKEN}`,
                 'Accept': 'application/vnd.github.v3+json'
@@ -40,7 +35,7 @@ exports.handler = async (event) => {
         console.log('Fetched file SHA:', sha);
 
         // Update the file on GitHub
-        const updateResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+        const updateResponse = await fetch(fileUrl, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${GITHUB_TOKEN}`,
