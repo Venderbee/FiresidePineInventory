@@ -1,6 +1,11 @@
 function loadLocalData() {
     fetch('https://raw.githubusercontent.com/Venderbee/FiresidePineInventory/main/data.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             populateTable(data);
         })
@@ -36,23 +41,6 @@ function populateTable(data) {
                 updateLocalData(index, cellIndex, newCell.textContent);
             });
         });
-    });
-}
-
-function updateSheetData(row, col, value) {
-    const range = `Stock!${String.fromCharCode(65 + col)}${row}`;
-    const values = [[value]];
-    const body = { values };
-
-    gapi.client.sheets.spreadsheets.values.update({
-        spreadsheetId: SPREADSHEET_ID,
-        range: range,
-        valueInputOption: 'RAW',
-        resource: body,
-    }).then(response => {
-        console.log('Cell updated:', response);
-    }).catch(err => {
-        console.error('Error updating cell:', err);
     });
 }
 
