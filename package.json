@@ -1,10 +1,12 @@
 {
-  "name": "functions",
+  "name": "fireside-pine-inventory",
   "version": "1.0.0",
-  "description": "",
-  "main": "updateData.js",
+  "description": "Fireside Pine Inventory Management",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "netlify dev",
+    "build": "netlify build",
+    "deploy": "netlify deploy --prod"
   },
   "keywords": [],
   "author": "",
