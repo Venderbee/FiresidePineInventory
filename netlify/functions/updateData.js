@@ -7,7 +7,7 @@ exports.handler = async (event) => {
         const { REPO_OWNER, REPO_NAME, FILE_PATH, data } = JSON.parse(event.body);
         console.log('Parsed event body:', { REPO_OWNER, REPO_NAME, FILE_PATH, data });
 
-        const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+        const GITHUB_TOKEN = process.env.TOKEN;
         const message = 'Update data.json';
         const content = Buffer.from(JSON.stringify(data, null, 2)).toString('base64'); // Base64 encode the JSON data
 
