@@ -41,7 +41,7 @@ exports.handler = async (event) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                message: "Updating data.json",
+                message: "Update data.json",
                 content: Buffer.from(JSON.stringify(data, null, 2)).toString('base64'),
                 sha: sha,
                 branch: 'main'
@@ -63,7 +63,7 @@ exports.handler = async (event) => {
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },
-            body: JSON.stringify({ message: 'Data saved successfully' })
+            body: JSON.stringify({ message: 'Data saved successfully', result: updateText })
         };
 
     } catch (error) {
