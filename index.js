@@ -62,47 +62,29 @@ function updateLocalData(row, col, value) {
 }
 
 function saveLocalData(data) {
-    const message = 'Update data.json';
-    const content = btoa(JSON.stringify(data, null, 2)); // Base64 encode the JSON data
-
-    // Get the SHA of the existing file
-    fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+    fetch('https://your-netlify-function-endpoint/.netlify/functions/updateData', {
+        method: 'POST',
         headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`
-        }
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            REPO_OWNER,
+            REPO_NAME,
+            FILE_PATH,
+            data
+        })
     })
-    .then(response => response.json())
-    .then(fileData => {
-        const sha = fileData.sha;
-
-        // Update the file on GitHub
-        fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: message,
-                content: content,
-                sha: sha
-            })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(result => {
-            console.log('Data saved successfully:', result);
-        })
-        .catch(err => {
-            console.error('Error saving data:', err);
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(result => {
+        console.log('Data saved successfully:', result);
     })
     .catch(err => {
-        console.error('Error fetching file SHA:', err);
+        console.error('Error saving data:', err);
     });
 }
 
