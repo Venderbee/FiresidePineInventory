@@ -2,7 +2,11 @@ exports.handler = async (event) => {
     const fetch = (await import('node-fetch')).default;
 
     try {
+        console.log('Received event:', event);
+
         const { REPO_OWNER, REPO_NAME, FILE_PATH, data } = JSON.parse(event.body);
+        console.log('Parsed event body:', { REPO_OWNER, REPO_NAME, FILE_PATH, data });
+
         const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
         const message = 'Update data.json';
         const content = Buffer.from(JSON.stringify(data, null, 2)).toString('base64'); // Base64 encode the JSON data
@@ -15,11 +19,14 @@ exports.handler = async (event) => {
         });
 
         if (!fileResponse.ok) {
+            const errorText = await fileResponse.text();
+            console.error('Error fetching file SHA:', errorText);
             throw new Error('Error fetching file SHA');
         }
 
         const fileData = await fileResponse.json();
         const sha = fileData.sha;
+        console.log('Fetched file SHA:', sha);
 
         // Update the file on GitHub
         const updateResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
@@ -36,10 +43,14 @@ exports.handler = async (event) => {
         });
 
         if (!updateResponse.ok) {
+            const errorText = await updateResponse.text();
+            console.error('Error saving data:', errorText);
             throw new Error('Error saving data');
         }
 
         const result = await updateResponse.json();
+        console.log('Data saved successfully:', result);
+
         return {
             statusCode: 200,
             headers: {
@@ -50,6 +61,7 @@ exports.handler = async (event) => {
             body: JSON.stringify({ message: 'Data saved successfully', result })
         };
     } catch (error) {
+        console.error('Error in updateData function:', error.message);
         return {
             statusCode: 500,
             headers: {
