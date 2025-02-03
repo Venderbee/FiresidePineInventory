@@ -1,4 +1,3 @@
-const GITHUB_TOKEN = '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';
 const REPO_OWNER = 'Venderbee';
 const REPO_NAME = 'FiresidePineInventory';
 const FILE_PATH = 'main/data.json';

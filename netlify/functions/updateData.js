@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
-
 exports.handler = async (event) => {
+    const fetch = (await import('node-fetch')).default;
+
     try {
         const { REPO_OWNER, REPO_NAME, FILE_PATH, data } = JSON.parse(event.body);
         const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
